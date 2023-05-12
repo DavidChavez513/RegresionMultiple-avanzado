@@ -21,27 +21,29 @@ public class CalcularGauss {
         return matrizAcomodada;
     }
 
-
     public float[][] resolverGauss(float[][] matrizAcomodada) {
-        int filas = matrizAcomodada.length;
-        int columnas = matrizAcomodada[0].length;
-        for (int i = 0; i < filas; i++) {
-            float divi = matrizAcomodada[i][i];
-            for (int j = 0; j < columnas; j++) {
-                matrizAcomodada[i][j] /= divi;
-            }
-            for (int k = 0; k < filas; k++) {
-                if (k != i) {
-                    float mult = matrizAcomodada[k][i];
-                    for (int j = 0; j < columnas; j++) {
-                        matrizAcomodada[k][j] -= mult * matrizAcomodada[i][j];
+        try {
+            int filas = matrizAcomodada.length;
+            int columnas = matrizAcomodada[0].length;
+            for (int i = 0; i < filas; i++) {
+                float divi = matrizAcomodada[i][i];
+                for (int j = 0; j < columnas; j++) {
+                    matrizAcomodada[i][j] /= divi;
+                }
+                for (int k = 0; k < filas; k++) {
+                    if (k != i) {
+                        float mult = matrizAcomodada[k][i];
+                        for (int j = 0; j < columnas; j++) {
+                            matrizAcomodada[k][j] -= mult * matrizAcomodada[i][j];
+                        }
                     }
                 }
             }
+        } catch (Exception errException) {
+            System.out.println(errException.getMessage());
         }
         return matrizAcomodada;
     }
-
 
     public void imprimirMatrizResuelta(float[][] matrizGauss) {
         for (int j = 0; j < 3; j++) {
