@@ -40,6 +40,7 @@ public class CalcularGauss {
                     }
                     // Si toda la fila es 0,  salir del ciclo
                     if (aux == 4) {
+                        System.out.println("La matriz que genera tiene soluciones infinitas.");
                         break;
                     }
                 }
