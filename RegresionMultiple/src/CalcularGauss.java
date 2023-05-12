@@ -26,15 +26,43 @@ public class CalcularGauss {
             int filas = matrizAcomodada.length;
             int columnas = matrizAcomodada[0].length;
             for (int i = 0; i < filas; i++) {
+
+                // Verificar si la matriz ya está resuelta
+                if (matrizAcomodada[i][2] == 0) {
+                    // Verificar si toda la fila es 0
+                    int aux = 0;
+                    for (int j = 0; j < matrizAcomodada[i].length; j++) {
+                        int numero = (int) matrizAcomodada[i][j];
+                        if (numero == 0) {
+                            aux++;
+                        }
+
+                    }
+                    // Si toda la fila es 0,  salir del ciclo
+                    if (aux == 4) {
+                        break;
+                    }
+                }
+
                 float divi = matrizAcomodada[i][i];
                 for (int j = 0; j < columnas; j++) {
-                    matrizAcomodada[i][j] /= divi;
+
+                    try {
+                        matrizAcomodada[i][j] /= divi;
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
                 }
                 for (int k = 0; k < filas; k++) {
                     if (k != i) {
-                        float mult = matrizAcomodada[k][i];
-                        for (int j = 0; j < columnas; j++) {
-                            matrizAcomodada[k][j] -= mult * matrizAcomodada[i][j];
+
+                        try {
+                            float mult = matrizAcomodada[k][i];
+                            for (int j = 0; j < columnas; j++) {
+                                matrizAcomodada[k][j] -= mult * matrizAcomodada[i][j];
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                     }
                 }
